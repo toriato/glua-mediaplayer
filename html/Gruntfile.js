@@ -3,7 +3,7 @@
 
 module.exports = function (grunt) {
 
-    const sass = require('node-sass')
+    const sass = require('sass')
 
     // Load grunt tasks automatically
     require('load-grunt-tasks')(grunt);
