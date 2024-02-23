@@ -38,11 +38,15 @@
             start: MEDIAPLAYER_START_SEC
         })
 
+        if (!isNaN(MEDIAPLAYER_START_SEC)) {
+            queries.set('start', MEDIAPLAYER_START_SEC)
+        }
+
         let player = null
 
         window.MediaPlayer = window.MediaPlayer || {
             isPlayerReady: () => player !== null,
-            setVolume: volume => player.volume(volume),
+            setVolume: volume => player.volume(volume / 100),
             play: () => player.play(),
             pause: () => player.pause(),
             seek: time => player.currentTime(time)
@@ -51,13 +55,13 @@
         const instance_prefix = MEDIAPLAYER_INVIDIOUS_INSTANCE.startsWith('https://') ? MEDIAPLAYER_INVIDIOUS_INSTANCE : 'https://' + MEDIAPLAYER_INVIDIOUS_INSTANCE
         iframe.src = `${instance_prefix}/embed/${MEDIAPLAYER_VIDEO_ID}?${queries.toString()}`
         iframe.addEventListener('load', () => {
-            Object.defineProperty(iframe.contentWindow, {
+            Object.defineProperty(iframe.contentWindow, 'player', {
                 get: function () {
                     return this._player
                 },
                 set: function (value) {
-                    player = value
                     this._player = value
+                    player = value
                     MediaPlayer.ytReady = true
                 }
             })
