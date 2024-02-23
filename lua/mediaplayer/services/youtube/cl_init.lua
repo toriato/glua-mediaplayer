@@ -7,7 +7,7 @@ local htmlBaseUrl = MediaPlayer.GetConfigValue('html.base_url')
 DEFINE_BASECLASS( "mp_service_browser" )
 
 local cvSubtitles = CreateClientConVar("mediaplayer_subtitles", GetConVar("gmod_language"):GetString(), true, false)
-local cvInvidiousInstance = CreateClientConVar("mediaplayer_invidious_instance", "invidious.jing.rocks", true, false)
+local cvInvidiousInstance = CreateClientConVar("mediaplayer_invidious_instance", "", true, false)
 local cvInvidiousEnable = CreateClientConVar("mediaplayer_invidious_enable", 0, true, false)
 
 local JS_SetVolume = "if(window.MediaPlayer) MediaPlayer.setVolume(%s);"
