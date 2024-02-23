@@ -23,27 +23,26 @@
     <script>
         const url = new URL(location.href)
 
-        const MEDIAPLAYER_INVIDIOUS_INSTANCE = url.searchParams.has('instance') ? url.searchParams.get('instance') : 'vid.puffyan.us'
-        const MEDIAPLAYER_SUBTITLES = url.searchParams.has('subtitles') ? url.searchParams.get('subtitles') : 'en'
-        const MEDIAPLAYER_VIDEO_ID = url.searchParams.get('v')
-        const MEDIAPLAYER_START_SEC = parseInt(url.searchParams.get('start'), 10)
+        const MEDIAPLAYER_INVIDIOUS_INSTANCE = url.searchParams.get('instance') || 'vid.puffyan.us'
+        const MEDIAPLAYER_SUBTITLES = url.searchParams.get('subtitles') || 'en'
+        const MEDIAPLAYER_VIDEO_ID = url.searchParams.get('v') || 'TnlakHr-O4w'
+        const MEDIAPLAYER_VOLUME = parseInt(url.searchParams.get('volume'), 10) || 100
+        const MEDIAPLAYER_START_SEC = parseInt(url.searchParams.get('start'), 10) || 0
 
         const iframe = document.querySelector('iframe')
         const queries = new URLSearchParams({
             autoplay: '1',
+            start: MEDIAPLAYER_START_SEC,
+            volume: MEDIAPLAYER_VOLUME / 100,
             subtitles: MEDIAPLAYER_SUBTITLES
                 .split(',')
                 .map(v => v.trim().toLowerCase())
-                .join(','),
-            start: MEDIAPLAYER_START_SEC
+                .join(',')
         })
-
-        if (!isNaN(MEDIAPLAYER_START_SEC)) {
-            queries.set('start', MEDIAPLAYER_START_SEC)
-        }
 
         let player = null
 
+        // this shit not works, fuck CSF
         window.MediaPlayer = window.MediaPlayer || {
             isPlayerReady: () => player !== null,
             setVolume: volume => player.volume(volume / 100),

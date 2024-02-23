@@ -56,9 +56,8 @@ function SERVICE:OnBrowserReady( browser )
 				'?v=' .. self:GetYouTubeVideoId() ..
 				'&timed=' .. (self:IsTimed() and '1' or '0') ..
 				'&instance=' .. cvInvidiousInstance:GetString() ..
-				'&subtitles=' .. cvSubtitles:GetString()
-
-	local curTime = self:CurrentTime()
+				'&subtitles=' .. cvSubtitles:GetString() ..
+				'&volume=' .. self:Volume()
 
 	-- Add start time to URL if the video didn't just begin
 	local currentTime = self:CurrentTime()
