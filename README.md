@@ -4,7 +4,7 @@ Media Player is an addon for Garry's Mod which features several media streaming 
 
 Different from the original repository, various features have been added or fixed.
 
-You can check out the modified web app for this addon in [this repository](https://github.com/toriato/glua-mediaplayer).
+You can check the [original repository here](https://github.com/toriato/glua-mediaplayer).
 
 ## Added or Modified Features
 - Allows YouTube Shorts URLs
